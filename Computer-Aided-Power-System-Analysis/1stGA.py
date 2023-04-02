@@ -164,11 +164,9 @@ plt.ylabel('Fitness score')
 plt.title('Fitness scores over generations')
 plt.show()
 
-# Plot the fitness scores against the generation numbers
+# Plot the population against the generation numbers
 plt.plot(generation_numbers, population_history)
 plt.xlabel('Generation')
 plt.ylabel('population')
-plt.title('Generation over generations')
+plt.title('population over generations')
 plt.show()
-
-
