@@ -25,6 +25,19 @@ def fitness(solution):
     # Calculate the fitness value of the solution
     x1, x2 = solution
     j1 = (x1**2 + x2**2 - x1*x2 - 10) * 1e-3
+
+    return -j1  # minimize the objective function
+
+def fitness1(solution):
+    # Calculate the fitness value of the solution
+    x1, x2 = solution
+    j2 = x1**2 + (x2-2)**2 - 100
+    return -j2  # minimize the objective function
+
+def fitness3(solution):
+    # Calculate the fitness value of the solution
+    x1, x2 = solution
+    j1 = (x1**2 + x2**2 - x1*x2 - 10) * 1e-3
     j2 = x1**2 + (x2-2)**2 - 100
     return -(j1 + j2)  # minimize the objective function
 
@@ -70,8 +83,6 @@ def roulette_wheel_selection(population, fitness_scores):
 
 # Step 5: Cross over
 # Define crossover process with crossover rate
-
-
 def uniform_crossover(parent1, parent2):
     new_solution = [0] * GENE_SIZE
     for i in range(GENE_SIZE):
@@ -136,7 +147,7 @@ for i in range(NUM_GENERATIONS):
     del fitness_scores[worst_index]
 
     # 
-    fitness_scores_history.append(max(fitness_scores))
+    fitness_scores_history.append(max(fitness_scores)*-1)
     population_history.append(new_solution)
     generation_numbers.append(i)
 
@@ -149,7 +160,7 @@ for solution in population:
 # Return the best solution found
 best_index = fitness_scores.index(max(fitness_scores))
 best_solution = population[best_index]
-best_fitness = fitness_scores[best_index]
+best_fitness = fitness_scores[best_index] * -1
 
 print("Best solution found: ", best_solution)
 print("Best fitness score: ", best_fitness)
